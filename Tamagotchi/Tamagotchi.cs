@@ -5,14 +5,14 @@ using System.Runtime.CompilerServices;
 
 namespace Tamagotchi;
 
-public class Tamagotchi
+public class Tamagotchis    
 {
     private int hunger;
     private int boredom;
     private List<string> words = new();
     private bool isAlive = true;
     private Random Generator = new Random();
-    public string Name;
+    public string name;
 
     public void Feed()
     {
@@ -32,7 +32,7 @@ public class Tamagotchi
         else
         {
             int wordNumber = Random.Shared.Next(words.Count);
-            Console.WriteLine($"{Name} says {words[wordNumber]}");
+            Console.WriteLine($"{name} says {words[wordNumber]}");
         }
         ReduceBoredom();
 
@@ -40,7 +40,7 @@ public class Tamagotchi
 
     public void Teach(String word)
     {
-        Console.WriteLine($"{Name} has learned {word}");
+        Console.WriteLine($"{name} has learned {word}");
         words.Add(word);
         ReduceBoredom();
     }
@@ -52,24 +52,26 @@ public class Tamagotchi
     }
     public void PrintStats()
     {
+        Console.WriteLine($"{name} Boredom: {boredom} | Hunger: {hunger}");
+        
         if (hunger == 9)
         {
-            Console.WriteLine($"{Name} is starving, feed it quickly!");
+            Console.WriteLine($"{name} is starving, feed it quickly!");
         }
 
         if (boredom == 9)
         {
-            Console.WriteLine($"{Name} is depressed, entertain it quickly!");
+            Console.WriteLine($"{name} is depressed, entertain it quickly!");
         }
 
         else if (hunger >= 3 && hunger != 9)
         {
-            Console.WriteLine($"{Name} is getting hungry");
+            Console.WriteLine($"{name} is getting hungry");
         }
         
         else if(boredom >= 3 && boredom != 9)
         {
-            Console.WriteLine($"{Name} is getting bored");
+            Console.WriteLine($"{name} is getting bored");
         }
         else if (hunger == 10 || boredom == 10 ){
             isAlive = false;
